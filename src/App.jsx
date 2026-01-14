@@ -1,22 +1,15 @@
 import Navbar from './components/layout/Navbar';
-import { CONFIG } from './config/data';
+import Hero from './components/sections/Hero';
+import Services from './components/sections/Services';
+
 function App() {
   return (
-    <main className="relative w-full">
+    <main className="bg-slate-900 min-h-screen">
       <Navbar />
-      
-      {/* Esto es solo para que puedas hacer scroll y ver cómo cambia el Navbar */}
-      <section id="inicio" className="h-[200vh] bg-slate-900 pt-32 px-10 text-center">
-        <h1 className="text-white text-5xl font-black mb-6">
-          PROYECTO: {CONFIG.clientName}
-        </h1>
-        <p className="text-blue-400 text-xl font-bold uppercase tracking-widest">
-          {CONFIG.subtitle}
-        </p>
-        <div className="mt-20 animate-bounce text-white/30 italic">
-          Desliza hacia abajo para ver la magia del menú...
-        </div>
-      </section>
+      <Hero />
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
+      <div className="w-full h-20 bg-gradient-to-b from-slate-900 to-slate-950"></div>
+      <Services />
     </main>
   );
 }
