@@ -3,3 +3,11 @@
 html {
   scroll-behavior: smooth;
 }
+/* global styles */
+.no-scroll { overflow: hidden !important; }
+
+/* shimmer animation used en Navbar CTA */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

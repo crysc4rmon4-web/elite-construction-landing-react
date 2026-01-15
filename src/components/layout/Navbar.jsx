@@ -1,112 +1,114 @@
-import { useState, useEffect } from 'react';
+// src/components/layout/Navbar.jsx
+import React, { useEffect, useState } from 'react';
 import logo from '../../assets/logo-valentin.png';
 import { CONFIG } from '../../config/data';
+import { useModal } from '../../context/ModalContext';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openModal } = useModal();
 
-  // Efecto para detectar el scroll y activar el modo Glassmorphism
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${
-      isScrolled 
-      ? 'bg-slate-950/80 backdrop-blur-xl border-b border-blue-500/20 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' 
-      : 'bg-transparent py-6'
-    }`}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
+  useEffect(() => {
+    function onResize() {
+      if (window.innerWidth >= 768) setIsMenuOpen(false);
+    }
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
-        {/* LOGO / NOMBRE CON EFECTO ECLIPSE */}
-        <div className="flex items-center gap-4 group">
-          <div className="relative flex items-center justify-center">
+  const navItems = ['Inicio', 'Servicios', 'Proyectos'];
+
+  return (
+    <nav
+      className={`fixed w-full z-[100] transition-all duration-500 ${
+        isScrolled ? 'bg-slate-950/90 backdrop-blur-xl border-b border-white/5 py-3 shadow-2xl' : 'bg-transparent py-6'
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div className="container mx-auto px-6 flex justify-between items-center">
+        <div
+          className="flex items-center gap-4 group cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <div className="relative">
             <img
               src={logo}
-              alt="Logo Valentín"
-              className={`transition-all duration-700 object-contain z-10 ${
-                isScrolled
-                ? 'h-12 w-auto'
-                : 'h-24 w-auto p-4 bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_70%)] rounded-full scale-110'
-              }`}
+              alt={CONFIG.clientName || 'Logo'}
+              className={`transition-all duration-500 object-contain ${isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-20'}`}
             />
-            {/* Brillo sutil detrás del logo al hacer scroll */}
-            {isScrolled && (
-              <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full"></div>
-            )}
+            {isScrolled && <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full pointer-events-none" />}
           </div>
 
-          <div className="flex flex-col border-l border-white/10 pl-4">
-            <span className="text-2xl font-black tracking-tighter leading-none text-white">
-              {CONFIG.clientName}
-            </span>
-            <span className={`text-[10px] uppercase tracking-[0.3em] font-bold transition-colors duration-500 ${
-              isScrolled ? 'text-blue-400' : 'text-blue-300'
-            }`}>
-              {CONFIG.subtitle}
-            </span>
+          <div className="flex flex-col border-l border-white/10 pl-4 hidden sm:flex">
+            <span className="text-xl font-black tracking-tight text-white leading-none">{CONFIG.clientName}</span>
+            <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-blue-400 mt-1">{CONFIG.subtitle}</span>
           </div>
         </div>
 
-        {/* MENÚ ESCRITORIO (FUTURISTA) */}
         <div className="hidden md:flex items-center gap-10">
-          {['Inicio', 'Servicios', 'Proyectos'].map((item) => (
+          {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="group relative text-sm font-bold uppercase tracking-[0.2em] text-slate-300 hover:text-white transition-colors"
+              className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-all relative group"
             >
               {item}
-              {/* Línea animada inferior */}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
             </a>
           ))}
-          
-          <a
-            href={`https://wa.me/${CONFIG.phone}`}
-            className="relative overflow-hidden bg-green-600 hover:bg-green-500 text-white px-8 py-2.5 rounded-full text-sm font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] flex items-center gap-2"
+
+          <button
+            type="button"
+            onClick={() => openModal()}
+            className="group relative px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-black uppercase tracking-widest transition-all hover:scale-105 shadow-lg overflow-hidden"
+            aria-label="Solicitar presupuesto"
           >
-            <span className="relative z-10 uppercase">Contactar</span>
-            {/* Efecto de brillo interior */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full hover:animate-[shimmer_1.5s_infinite]"></div>
-          </a>
+            <span className="relative z-10">Presupuesto Gratis</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+          </button>
         </div>
 
-        {/* BOTÓN MÓVIL (ESTILO HAMBURGUESA MINIMALISTA) */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          type="button"
+          className="md:hidden text-white p-2"
+          onClick={() => setIsMenuOpen((s) => !s)}
+          aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={isMenuOpen}
         >
-          <div className={`w-7 h-0.5 transition-all duration-300 bg-white ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-          <div className={`w-7 h-0.5 transition-all duration-300 bg-white ${isMenuOpen ? 'opacity-0' : ''}`}></div>
-          <div className={`w-7 h-0.5 transition-all duration-300 bg-white ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+          <span className={`block w-6 h-0.5 bg-current transform transition ${isMenuOpen ? 'rotate-45 translate-y-1' : 'mb-1.5'}`} />
+          <span className={`block w-6 h-0.5 bg-current transform transition ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
         </button>
       </div>
 
-      {/* MENÚ DESPLEGABLE MÓVIL (DARK MODE) */}
-      <div className={`absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-2xl border-b border-white/5 transition-all duration-500 overflow-hidden ${
-        isMenuOpen ? 'max-h-80 opacity-100 shadow-2xl' : 'max-h-0 opacity-0'
-      }`}>
-        <div className="flex flex-col p-8 gap-6">
-          {['Inicio', 'Servicios', 'Proyectos'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              onClick={() => setIsMenuOpen(false)}
-              className="text-slate-300 font-bold uppercase text-base tracking-[0.3em] hover:text-blue-400 transition-colors"
-            >
+      <div
+        id="mobile-menu"
+        className={`absolute top-full left-0 w-full bg-slate-950 border-t border-white/5 transition-all duration-300 ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+      >
+        <div className="flex flex-col p-8 gap-6 text-center">
+          {navItems.map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-slate-300 uppercase tracking-widest">
               {item}
             </a>
           ))}
-          <a
-            href={`https://wa.me/${CONFIG.phone}`}
-            className="bg-gradient-to-r from-green-600 to-green-500 text-white text-center py-4 rounded-2xl font-black uppercase tracking-widest shadow-lg"
+          <button
+            type="button"
+            onClick={() => { setIsMenuOpen(false); openModal(); }}
+            className="bg-blue-600 py-4 rounded-2xl font-black uppercase text-white tracking-widest"
           >
-            WhatsApp Directo
-          </a>
+            Pedir Presupuesto
+          </button>
         </div>
       </div>
     </nav>
