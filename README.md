@@ -1,16 +1,57 @@
-# React + Vite
+# The Construction Lead Machine - Landing Page Premium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔥 Descripción del Producto
+Esta es una **landing page premium** para empresas de reformas y construcción que quieren **captar clientes mientras duermen**.  
+Diseñada para transformar visitantes en leads calificados, con **experiencia de usuario (UX) de alto impacto visual**, sin fricción y 100% funcional en móviles.
 
-Currently, two official plugins are available:
+## 🎯 Problema que Resuelve
+Muchos negocios de reformas pierden clientes porque:
+- No tienen web profesional
+- Sus formularios son complicados
+- Nadie les llama después de que un usuario muestra interés
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Esta plantilla convierte cualquier visitante en un cliente potencial con **un solo clic**.
 
-## React Compiler
+## 💎 Qué Hace
+- Hero llamativo con CTA directo a WhatsApp y Email
+- Sección de servicios con botones de “Presupuesto Gratis”
+- Modal global de contacto (omnichannel) que dispara WhatsApp + Email
+- Sección de proyectos (galería de 6 trabajos terminados)
+- Footer profesional con contacto y branding
+- Diseño **Dark + High-End**, responsive y rápido
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Stack
+- React.js + Vite
+- Tailwind CSS
+- Sin backend – todo funciona vía WhatsApp + Email
 
-## Expanding the ESLint configuration
+## 🧩 Configuración
+1. Clona el proyecto.
+2. Instala dependencias: `npm install`
+3. Actualiza `CONFIG.js` con tus datos:
+   - Nombre del cliente
+   - Teléfono
+   - Servicios
+4. Subelo a cualquier hosting gratuito (Vercel recomendado)
+5. ¡Listo! Web funcionando y captando leads automáticamente.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✅ Qué Incluye
+- Landing page completa y responsiva
+- Modal de contacto funcional
+- Sección Hero, Servicios, Proyectos, Contacto y Footer
+- Configuración lista para producción
+
+## 🎨 Diseño y Animaciones
+- Hover dinámico en tarjetas y botones
+- Badges “Trabajo Real / Referencia” en la galería
+- Gradientes y sombras para impacto visual
+- Transiciones suaves y modernas
+
+## 📈 Resultado
+- Captación de leads directa a WhatsApp y Email
+- Optimizada para móviles y desktop
+- Reutilizable para cualquier negocio de reformas
+
+---
+
+**💡 Nota:** Este producto está listo para vender y replicar. Perfecto para autónomos o agencias que quieran un producto premium sin necesidad de programar.

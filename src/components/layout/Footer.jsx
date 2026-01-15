@@ -21,7 +21,9 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-bold text-sm mb-6 uppercase tracking-widest">Contacto</h4>
           <p className="text-slate-400 mb-2">Soria, España</p>
-          <p className="text-blue-500 font-bold">{CONFIG.phone}</p>
+          <p className="text-slate-400 mt-4 text-sm">
+            Llámanos: <a href={`tel:${CONFIG.phone}`} className="text-blue-500 font-bold hover:underline">{CONFIG.phone}</a>
+          </p>
           <p className="text-slate-400 mt-4 text-sm">Email: <a href={`mailto:${CONFIG.email}`} className="text-blue-400">{CONFIG.email}</a></p>
         </div>
       </div>
