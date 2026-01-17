@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import logo from '../../assets/logo.png'; // Opcional: Descomentar si usas logo de archivo
 import { CONFIG } from '../../config/data';
 import { useModal } from '../../context/ModalContext';
 
@@ -40,7 +39,6 @@ export default function Navbar() {
           tabIndex={0}
           onKeyDown={(e) => e.key === 'Enter' && window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          {/* Opción A: Texto como Logo (Más fácil de vender como plantilla) */}
           <div className="flex flex-col">
             <span className="text-2xl font-black tracking-tight text-white leading-none">
               {CONFIG.brand.logoText || CONFIG.brand.name}
@@ -70,9 +68,9 @@ export default function Navbar() {
             type="button"
             onClick={() => openModal()}
             className="group relative px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-black uppercase tracking-widest transition-all hover:scale-105 shadow-lg overflow-hidden"
-            aria-label="Solicitar presupuesto"
+            aria-label="Request free estimate"
           >
-            <span className="relative z-10">Presupuesto Gratis</span>
+            <span className="relative z-10">Free Estimate</span>
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
           </button>
         </div>
@@ -82,7 +80,7 @@ export default function Navbar() {
           type="button"
           className="md:hidden text-white p-2"
           onClick={() => setIsMenuOpen((s) => !s)}
-          aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
         >
           <span className={`block w-6 h-0.5 bg-current transform transition ${isMenuOpen ? 'rotate-45 translate-y-1' : 'mb-1.5'}`} />
@@ -106,7 +104,7 @@ export default function Navbar() {
             onClick={() => { setIsMenuOpen(false); openModal(); }}
             className="bg-blue-600 py-4 rounded-2xl font-black uppercase text-white tracking-widest"
           >
-            Pedir Presupuesto
+            Free Estimate
           </button>
         </div>
       </div>

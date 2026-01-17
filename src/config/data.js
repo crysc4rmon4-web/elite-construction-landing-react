@@ -23,7 +23,7 @@ export const CONFIG = {
   navLinks: [
     { name: "Home", href: "#inicio" },
     { name: "Services", href: "#servicios" },
-    { name: "Portfolio", href: "#proyectos" },
+    { name: "Showcase", href: "#proyectos" }, // Reemplazado Portfolio por Showcase
     { name: "Contact", href: "#contacto" },
   ],
 
@@ -53,13 +53,33 @@ export const CONFIG = {
       title: "Full Renovations",
       image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12",
       desc: "End-to-end project management. From structural changes to the final coat of paint."
+    },
+    {
+      id: 4,
+      title: "Custom Carpentry",
+      image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88",
+      desc: "Bespoke furniture and wooden structures. High-precision woodwork for unique architectural details."
+    },
+    {
+      id: 5,
+      title: "Outdoor Living",
+      image: "https://images.unsplash.com/photo-1558444479-c8a02e624730",
+      desc: "Decks, patios, and exterior styling. Expand your living space with our premium outdoor solutions."
+    },
+    {
+      id: 6,
+      title: "Project Design",
+      image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e",
+      desc: "Architectural planning and 3D modeling. We help you visualize your dream project before construction begins."
     }
-    // ... puedes añadir los otros 3 con fotos de Unsplash similares
   ],
 
   projects: [
     { id: 1, title: "Luxury Villa Reno", category: "Full House", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c" },
     { id: 2, title: "Modern Office Design", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c" },
     { id: 3, title: "Minimalist Kitchen", category: "Interior", image: "https://images.unsplash.com/photo-1556911220-e15224bbafb0" },
+    { id: 4, title: "Penthouse Suite", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750" },
+    { id: 5, title: "Industrial Loft", category: "Commercial", image: "https://images.unsplash.com/photo-1484154218962-a197022b5858" },
+    { id: 6, title: "Classic Townhouse", category: "Renovation", image: "https://images.unsplash.com/photo-1448630305456-d39fa543391e" }
   ],
 };

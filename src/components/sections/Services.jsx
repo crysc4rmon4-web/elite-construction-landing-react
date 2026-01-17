@@ -1,7 +1,7 @@
 import React from 'react';
 import { CONFIG } from '../../config/data';
 import { useModal } from '../../context/ModalContext';
-import { optimizeImg } from '../../utils/imageOptimizer'; // <--- IMPORTACIÓN AÑADIDA
+import { optimizeImg } from '../../utils/imageOptimizer';
 
 export default function Services() {
   const { openModal } = useModal();
@@ -13,10 +13,10 @@ export default function Services() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter uppercase">
-            Soluciones <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Integrales</span>
+            Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Solutions</span>
           </h2>
           <p className="text-slate-400 text-lg md:text-xl font-light">
-            Especialistas en reformas y construcción. Calidad artesanal con tecnología moderna.
+            Specialists in high-end renovations and construction. Expert craftsmanship meets modern technology.
           </p>
           <div className="mt-8 flex justify-center">
             <div className="w-24 h-1 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]" />
@@ -30,7 +30,6 @@ export default function Services() {
               className="group relative bg-slate-900/40 border border-white/5 rounded-[2rem] overflow-hidden hover:border-blue-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/20"
             >
               <div className="relative h-56 overflow-hidden">
-            
                 <img
                   src={optimizeImg(service.image, 600)} 
                   alt={service.title}
@@ -50,9 +49,9 @@ export default function Services() {
                   type="button"
                   onClick={() => openModal({ service: service.title })}
                   className="w-full group/btn relative overflow-hidden flex items-center justify-center gap-3 bg-white/5 hover:bg-blue-600 border border-white/10 hover:border-blue-500 py-4 rounded-2xl transition-all duration-300"
-                  aria-label={`Solicitar presupuesto para ${service.title}`}
+                  aria-label={`Request quote for ${service.title}`}
                 >
-                  <span className="text-xs font-black uppercase tracking-[0.2em] text-white relative z-10">Consultar Presupuesto</span>
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-white relative z-10">Get a Quote</span>
                   <svg className="w-4 h-4 text-blue-400 group-hover/btn:text-white transition-transform group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                     <path d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
