@@ -63,7 +63,7 @@ export const CONFIG = {
     {
       id: 5,
       title: "Outdoor Living",
-      image: "https://images.unsplash.com/photo-1558444479-c8a02e624730",
+      image: "https://images.pexels.com/photos/26571197/pexels-photo-26571197.jpeg",
       desc: "Decks, patios, and exterior styling. Expand your living space with our premium outdoor solutions."
     },
     {
@@ -77,9 +77,9 @@ export const CONFIG = {
   projects: [
     { id: 1, title: "Luxury Villa Reno", category: "Full House", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c" },
     { id: 2, title: "Modern Office Design", category: "Commercial", image: "https://images.unsplash.com/photo-1497366216548-37526070297c" },
-    { id: 3, title: "Minimalist Kitchen", category: "Interior", image: "https://images.unsplash.com/photo-1556911220-e15224bbafb0" },
+    { id: 3, title: "Minimalist Kitchen", category: "Interior", image: "https://images.pexels.com/photos/26571201/pexels-photo-26571201.jpeg" },
     { id: 4, title: "Penthouse Suite", category: "Residential", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750" },
-    { id: 5, title: "Industrial Loft", category: "Commercial", image: "https://images.unsplash.com/photo-1484154218962-a197022b5858" },
-    { id: 6, title: "Classic Townhouse", category: "Renovation", image: "https://images.unsplash.com/photo-1448630305456-d39fa543391e" }
+    { id: 5, title: "Industrial Loft", category: "Commercial", image: "https://images.pexels.com/photos/30335240/pexels-photo-30335240.jpeg" },
+    { id: 6, title: "Classic Townhouse", category: "Renovation", image: "https://images.pexels.com/photos/19357442/pexels-photo-19357442.jpeg" }
   ],
 };
