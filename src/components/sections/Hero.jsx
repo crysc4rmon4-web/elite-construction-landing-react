@@ -1,7 +1,7 @@
-// src/components/sections/Hero.jsx
 import React from 'react';
 import { CONFIG } from '../../config/data';
 import { useModal } from '../../context/ModalContext';
+import { optimizeImg } from '../../utils/imageOptimizer'; // <--- IMPORTACIÓN AÑADIDA
 
 export default function Hero() {
   const { openModal } = useModal();
@@ -10,11 +10,13 @@ export default function Hero() {
     <section id="inicio" className="relative min-h-[100svh] w-full flex items-center justify-center overflow-hidden bg-slate-900">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-slate-950 z-10" />
+        
+        {/* CAMBIO AQUÍ: La imagen ahora es dinámica y se optimiza a 1920px */}
         <img
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
-          alt="Reformas de calidad"
+          src={optimizeImg(CONFIG.hero.bgImage, 1920)} 
+          alt={CONFIG.brand.name}
           className="w-full h-full object-cover"
-          loading="lazy"
+          loading="eager" // Prioridad alta por ser la primera imagen
         />
       </div>
 

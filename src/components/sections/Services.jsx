@@ -1,7 +1,7 @@
-// src/components/sections/Services.jsx
 import React from 'react';
 import { CONFIG } from '../../config/data';
 import { useModal } from '../../context/ModalContext';
+import { optimizeImg } from '../../utils/imageOptimizer'; // <--- IMPORTACIÓN AÑADIDA
 
 export default function Services() {
   const { openModal } = useModal();
@@ -16,7 +16,7 @@ export default function Services() {
             Soluciones <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Integrales</span>
           </h2>
           <p className="text-slate-400 text-lg md:text-xl font-light">
-            Especialistas en reformas y construcción en Soria. Calidad artesanal con tecnología moderna.
+            Especialistas en reformas y construcción. Calidad artesanal con tecnología moderna.
           </p>
           <div className="mt-8 flex justify-center">
             <div className="w-24 h-1 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)]" />
@@ -30,8 +30,9 @@ export default function Services() {
               className="group relative bg-slate-900/40 border border-white/5 rounded-[2rem] overflow-hidden hover:border-blue-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/20"
             >
               <div className="relative h-56 overflow-hidden">
+            
                 <img
-                  src={service.image}
+                  src={optimizeImg(service.image, 600)} 
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0"
                   loading="lazy"

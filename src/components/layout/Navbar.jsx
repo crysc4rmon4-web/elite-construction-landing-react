@@ -1,6 +1,5 @@
-// src/components/layout/Navbar.jsx
 import React, { useEffect, useState } from 'react';
-import logo from '../../assets/logo-valentin.png';
+// import logo from '../../assets/logo.png'; // Opcional: Descomentar si usas logo de archivo
 import { CONFIG } from '../../config/data';
 import { useModal } from '../../context/ModalContext';
 
@@ -24,8 +23,6 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const navItems = ['Inicio', 'Servicios', 'Proyectos'];
-
   return (
     <nav
       className={`fixed w-full z-[100] transition-all duration-500 ${
@@ -35,6 +32,7 @@ export default function Navbar() {
       aria-label="Main navigation"
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
+        {/* LOGO AREA */}
         <div
           className="flex items-center gap-4 group cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -42,29 +40,28 @@ export default function Navbar() {
           tabIndex={0}
           onKeyDown={(e) => e.key === 'Enter' && window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div className="relative">
-            <img
-              src={logo}
-              alt={CONFIG.clientName || 'Logo'}
-              className={`transition-all duration-500 object-contain ${isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-20'}`}
-            />
-            {isScrolled && <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full pointer-events-none" />}
-          </div>
-
-          <div className="flex flex-col border-l border-white/10 pl-4 hidden sm:flex">
-            <span className="text-xl font-black tracking-tight text-white leading-none">{CONFIG.clientName}</span>
-            <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-blue-400 mt-1">{CONFIG.subtitle}</span>
+          {/* Opción A: Texto como Logo (Más fácil de vender como plantilla) */}
+          <div className="flex flex-col">
+            <span className="text-2xl font-black tracking-tight text-white leading-none">
+              {CONFIG.brand.logoText || CONFIG.brand.name}
+            </span>
+            {CONFIG.brand.slogan && (
+               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-blue-400 mt-1">
+                 {CONFIG.brand.slogan}
+               </span>
+            )}
           </div>
         </div>
 
+        {/* DESKTOP MENU */}
         <div className="hidden md:flex items-center gap-10">
-          {navItems.map((item) => (
+          {CONFIG.navLinks.map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.name}
+              href={item.href}
               className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-all relative group"
             >
-              {item}
+              {item.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
             </a>
           ))}
@@ -80,6 +77,7 @@ export default function Navbar() {
           </button>
         </div>
 
+        {/* MOBILE TOGGLE */}
         <button
           type="button"
           className="md:hidden text-white p-2"
@@ -92,14 +90,15 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* MOBILE MENU */}
       <div
         id="mobile-menu"
         className={`absolute top-full left-0 w-full bg-slate-950 border-t border-white/5 transition-all duration-300 ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
       >
         <div className="flex flex-col p-8 gap-6 text-center">
-          {navItems.map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-slate-300 uppercase tracking-widest">
-              {item}
+          {CONFIG.navLinks.map((item) => (
+            <a key={item.name} href={item.href} onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-slate-300 uppercase tracking-widest">
+              {item.name}
             </a>
           ))}
           <button

@@ -31,5 +31,9 @@ function App() {
     </ModalProvider>
   );
 }
-
+console.log(
+  "%c 🚀 Engine by Crys-C4rmona %c https://github.com/crysc4rmon4-web",
+  "background: #2563eb; color: #fff; padding: 5px 10px; border-radius: 5px; font-weight: bold;",
+  "color: #2563eb; text-decoration: underline;"
+);
 export default App;
