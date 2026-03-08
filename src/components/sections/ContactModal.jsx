@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useModal } from '../../context/ModalContext';
 import { CONFIG } from '../../config/data';
@@ -19,40 +19,56 @@ export default function ContactModal() {
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md transition-opacity" onClick={closeModal} />
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-2 sm:p-4">
+      <div 
+        className="absolute inset-0 bg-slate-950/90 backdrop-blur-md transition-opacity" 
+        onClick={closeModal} 
+      />
 
-      <div className="relative w-full max-w-lg bg-slate-900 border border-white/10 rounded-[2.5rem] p-8 shadow-2xl animate-[fadeIn_0.2s]">
-        <button onClick={closeModal} className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors">✕</button>
+      <div className="relative w-full max-w-lg bg-slate-900 border border-white/10 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl animate-[fadeIn_0.2s] flex flex-col max-h-[95vh] sm:max-h-[90vh]">
+        
+        <button 
+          onClick={closeModal} 
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 text-slate-500 hover:text-white transition-colors z-20"
+        >
+          <span className="text-xl">✕</span>
+        </button>
 
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-black text-white mb-2 italic uppercase tracking-tighter">
-            Request <span className="text-blue-500">Proposal</span>
-          </h3>
-          <p className="text-slate-400 text-sm">Send us your project details today.</p>
-        </div>
+        {/* CLASE custom-scrollbar APLICADA AQUÍ */}
+        <div className="overflow-y-auto p-6 sm:p-10 custom-scrollbar">
+          
+          <div className="text-center mb-6">
+            <h3 className="text-xl sm:text-2xl font-black text-white mb-1 italic uppercase tracking-tighter">
+              Request <span className="text-blue-500">Proposal</span>
+            </h3>
+            <p className="text-slate-400 text-xs sm:text-sm">Ready to build your vision?</p>
+          </div>
 
-        {/* INTEGRACIÓN DEL FORMULARIO */}
-        <LeadForm />
+          <LeadForm />
 
-        <div className="relative my-8 text-center">
-          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/5"></div></div>
-          <span className="relative px-4 bg-slate-900 text-slate-500 text-xs uppercase tracking-widest">or direct contact</span>
-        </div>
+          <div className="relative my-6 text-center">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/5"></div>
+            </div>
+            <span className="relative px-3 bg-slate-900 text-slate-500 text-[10px] uppercase tracking-widest font-medium">
+              direct channels
+            </span>
+          </div>
 
-        <div className="flex gap-4">
-          <a 
-            href={`https://wa.me/${CONFIG.contact.whatsapp}?text=Hi, I need a construction quote.`}
-            className="flex-1 flex items-center justify-center gap-2 p-3 bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 rounded-xl transition-all text-green-500 font-bold text-sm"
-          >
-            {Icons.whatsapp} WhatsApp
-          </a>
-          <a 
-            href={`tel:${CONFIG.contact.phone}`}
-            className="flex-1 flex items-center justify-center gap-2 p-3 bg-slate-800 hover:bg-slate-700 border border-white/5 rounded-xl transition-all text-white font-bold text-sm"
-          >
-            Call Expert
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a 
+              href={`https://wa.me/${CONFIG.contact.whatsapp}?text=Hola, busco presupuesto para construcción.`}
+              className="flex-1 flex items-center justify-center gap-2 p-3 bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 rounded-xl transition-all text-green-500 font-bold text-xs"
+            >
+              {Icons.whatsapp} WhatsApp
+            </a>
+            <a 
+              href={`tel:${CONFIG.contact.phone}`}
+              className="flex-1 flex items-center justify-center gap-2 p-3 bg-slate-800 hover:bg-slate-700 border border-white/5 rounded-xl transition-all text-white font-bold text-xs"
+            >
+              Llamar ahora
+            </a>
+          </div>
         </div>
       </div>
     </div>,
