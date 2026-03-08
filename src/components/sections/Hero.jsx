@@ -10,13 +10,13 @@ export default function Hero() {
     <section id="inicio" className="relative min-h-[100svh] w-full flex items-center justify-center overflow-hidden bg-slate-900">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-slate-950 z-10" />
-        
+
         {/* Imagen optimizada a 1920px para pantallas grandes */}
         <img
-          src={optimizeImg(CONFIG.hero.bgImage, 1920)} 
+          src={optimizeImg(CONFIG.hero.bgImage, 1920)}
           alt={CONFIG.brand.name}
           className="w-full h-full object-cover"
-          loading="eager" 
+          loading="eager"
         />
       </div>
 
@@ -33,9 +33,14 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto lg:mx-0">
+           
             <button
               type="button"
-              onClick={() => openModal({ service: 'Hero Quote Request' })}
+              onClick={() => {
+                // MEJORA 3: Google Analytics Event
+                if (window.gtag) window.gtag('event', 'lead_click', { 'location': 'hero_main' });
+                openModal({ service: 'Hero Quote Request' });
+              }}
               className="group w-full sm:flex-1 bg-blue-600 hover:bg-blue-500 text-white p-5 rounded-2xl font-black text-sm md:text-base transition-all duration-300 shadow-[0_20px_40px_rgba(37,99,235,0.3)] flex items-center justify-center gap-3"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
